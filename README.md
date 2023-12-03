@@ -8,4 +8,4 @@ make sure to send me your suggestions as I am always happy to receive feedback
 to improve myself.
 
 Merry Christmas and Happy New 2024 year! :)
-[kseilezundane][github]
+[kseilezundane](github)
