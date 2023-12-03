@@ -37,14 +37,14 @@ async function getPartNumberSum() {
   // parsing all chars around (and including the numbers)
   // looking for NaN chars that are not dots
   numbersInLines.forEach((line, index) => {
-    line.forEach(number => {
+    line.forEach(({ number, start, end }) => {
       let isPartNumber = false;
 
       const startRow = index > 0 ? index - 1 : index;
       const endRow = index < numbersInLines.length - 1 ? index + 2 : index + 1;
 
-      const startChar = number.start > 0 ? number.start - 1 : number.start;
-      const endChar = number.end < lines[0].length - 1 ? number.end + 1 : number.end;
+      const startChar = start > 0 ? start - 1 : start;
+      const endChar = end < lines[0].length - 1 ? end + 1 : end;
 
       for (let j = startRow; j < endRow; j++) {
         for (let i = startChar; i < endChar; i++) {
@@ -55,7 +55,7 @@ async function getPartNumberSum() {
       }
 
       if (isPartNumber) {
-        partNumbersSum = partNumbersSum + number.number;
+        partNumbersSum = partNumbersSum + number;
       }
     });
   });

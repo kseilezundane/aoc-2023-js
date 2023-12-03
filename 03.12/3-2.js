@@ -38,12 +38,12 @@ async function getPartNumberSum() {
   // parsing all chars around (and including the numbers)
   // if * (gear) found - it's placed to the array of gears with numbers it's been attached to
   numbersInLines.forEach((line, index) => {
-    line.forEach(number => {
+    line.forEach(({ number, start, end }) => {
       let startRow = index > 0 ? index - 1 : index;
       let endRow = index < numbersInLines.length - 1 ? index + 2 : index + 1;
 
-      let startChar = number.start > 0 ? number.start - 1 : number.start;
-      let endChar = number.end < lines[0].length - 1 ? number.end + 1 : number.end;
+      let startChar = start > 0 ? start - 1 : start;
+      let endChar = end < lines[0].length - 1 ? end + 1 : end;
 
       for (let j = startRow; j < endRow; j++) {
         for (let i = startChar; i < endChar; i++) {
@@ -51,7 +51,7 @@ async function getPartNumberSum() {
               if (!gears[`${String(j + 1)},${String(i + 1)}`]) {
                 gears[`${String(j + 1)},${String(i + 1)}`] = [];
               }
-              gears[`${String(j + 1)},${String(i + 1)}`].push(number.number);
+              gears[`${String(j + 1)},${String(i + 1)}`].push(number);
           }
         }
       }
