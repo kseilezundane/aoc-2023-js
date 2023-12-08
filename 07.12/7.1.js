@@ -30,7 +30,7 @@ async function getCamelCardsWinnings() {
     // counting each symbol occurrence in the hand
     const symbols = {};
     for (let i = 0; i < handCards.length; i ++) {
-        symbols[handCards[i]] = symbols[handCards[i]] + 1 || 1
+      symbols[handCards[i]] = symbols[handCards[i]] + 1 || 1
     }
 
     // retrieving max occurrence of a symbol
@@ -78,7 +78,7 @@ async function getCamelCardsWinnings() {
   }
 
   // merging all hands types to one array by hands' priorities
-  const allCards = [
+  const allHands = [
     ...handsTypes.highCard,
     ...handsTypes.onePair,
     ...handsTypes.twoPair,
@@ -89,7 +89,7 @@ async function getCamelCardsWinnings() {
   ];
 
   // getting the sum of the bids
-  console.log(allCards.reduce((pv, cv, ci) => pv + (cv.bid * (ci + 1)) , 0))
+  console.log(allHands.reduce((accumulator, hand, index) => accumulator + (hand.bid * (index + 1)) , 0))
 }
 
 getCamelCardsWinnings();
